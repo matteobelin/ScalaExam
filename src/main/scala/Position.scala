@@ -1,0 +1,1 @@
+case class Position(val x: Int, val y: Int, val cardinal: Cardinal) {}
