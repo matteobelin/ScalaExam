@@ -11,17 +11,17 @@ class Ground {
       .map {
         case List(position, instrution) =>
           val Array(x, y, cardinal) = position.trim.split("\\s+")
-          val positionInitiale = Position(x.toInt, y.toInt, Cardinal.valueOf(cardinal))
-          executerInstructions(instrution.trim, positionInitiale, maxGround, new Mower())
+          val initialPosition = Position(x.toInt, y.toInt, Cardinal.valueOf(cardinal))
+          executeInstructions(instrution.trim, initialPosition, maxGround, new Mower())
         case _ => throw new IllegalArgumentException("argument non valide")
       }
       .toList
   }
 
     @tailrec
-    private def executerInstructions(instructions: String, position: Position, maxGround: MaxGround, tondeuse: Mower): Position = {
+    private def executeInstructions(instructions: String, position: Position, maxGround: MaxGround, mower: Mower): Position = {
       if instructions.isEmpty then position
-      else executerInstructions(instructions.tail, tondeuse.movement(instructions.head, position, maxGround), maxGround, tondeuse)
+      else executeInstructions(instructions.tail, mower.movement(instructions.head, position, maxGround), maxGround, mower)
     }
 }
 
