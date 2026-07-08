@@ -1,8 +1,8 @@
 import Cardinal.{E, N, S, W}
 
-class Tondeuse {
+class Mower {
 
-  def mouvement(char: Char,position: Position, maxGround: MaxGround): Position = char match {
+  def movement(char: Char,position: Position, maxGround: MaxGround): Position = char match {
     case 'G' => turnLeft(position)
     case 'D' => turnRight(position)
     case 'A' => moveForward(position, maxGround)

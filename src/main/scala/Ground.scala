@@ -12,16 +12,16 @@ class Ground {
         case List(position, instrution) =>
           val Array(x, y, cardinal) = position.trim.split("\\s+")
           val positionInitiale = Position(x.toInt, y.toInt, Cardinal.valueOf(cardinal))
-          executerInstructions(instrution.trim, positionInitiale, maxGround, new Tondeuse())
+          executerInstructions(instrution.trim, positionInitiale, maxGround, new Mower())
         case _ => throw new IllegalArgumentException("argument non valide")
       }
       .toList
   }
 
     @tailrec
-    private def executerInstructions(instructions: String, position: Position, maxGround: MaxGround, tondeuse: Tondeuse): Position = {
+    private def executerInstructions(instructions: String, position: Position, maxGround: MaxGround, tondeuse: Mower): Position = {
       if instructions.isEmpty then position
-      else executerInstructions(instructions.tail, tondeuse.mouvement(instructions.head, position, maxGround), maxGround, tondeuse)
+      else executerInstructions(instructions.tail, tondeuse.movement(instructions.head, position, maxGround), maxGround, tondeuse)
     }
 }
 
